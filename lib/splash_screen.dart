@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 3000), () {});
+    await Future.delayed(Duration(milliseconds: 2000), () {});
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -37,13 +37,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Image.asset('images/logo.png', width: 400, height: 400),
-              SizedBox(height: 5),
+              Image.asset('images/logo.png', width: 400, height: 350),
+              SizedBox(height: 200),
               Text(
                 'Learnance',
                 style: TextStyle(
+                    fontFamily: 'Montserrat-Regular',
                     fontSize: 34,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 8, 171, 231)),
@@ -52,7 +53,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Text(
                 'Desenvolvido por Matheus Pano',
                 style: TextStyle(
-                    fontSize: 24,
+                    fontFamily: 'Montserrat-Regular',
+                    fontSize: 16,
                     fontWeight: FontWeight.normal,
                     color: Color.fromARGB(255, 8, 171, 231)),
               ),

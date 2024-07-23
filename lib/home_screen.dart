@@ -47,8 +47,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 35, 47, 73),
       appBar: AppBar(
-        title: Text('Cursos'),
+        centerTitle: false,
+        title: Text(
+          'Learnance',
+          style: TextStyle(
+              fontFamily: 'Montserrat-Regular',
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 8, 171, 231)),
+        ),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
@@ -56,12 +65,33 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Image.asset(
+                      'images/text_HOME.png',
+                      width: 450,
+                      height: 250,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('Confira nossos cursos abaixo',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold)),
+                  ),
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text('Categoria Fiscal',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(height: 10),
                   coursesFiscal.isEmpty
@@ -103,8 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text('Categoria Contábil',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(height: 10),
                   coursesContabil.isEmpty

@@ -58,6 +58,13 @@ flutter:
   
   assets:
     - images/logo.png
+    - images/text_HOME.png
+
+
+  fonts:
+    - family: Montserrat-Regular
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
   
 
   
