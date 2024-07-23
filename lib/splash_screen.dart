@@ -30,8 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 35, 47, 73),
+              Color.fromARGB(255, 35, 47, 73),
             ],
           ),
         ),
@@ -42,11 +42,11 @@ class _SplashScreenState extends State<SplashScreen> {
               Image.asset('images/logo.png', width: 400, height: 400),
               SizedBox(height: 5),
               Text(
-                'Learnence',
+                'Learnance',
                 style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                    color: Color.fromARGB(255, 8, 171, 231)),
               ),
               SizedBox(height: 20),
               Text(
@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.normal,
-                    color: Colors.black),
+                    color: Color.fromARGB(255, 8, 171, 231)),
               ),
             ],
           ),
