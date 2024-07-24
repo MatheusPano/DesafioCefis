@@ -39,5 +39,5 @@ Após rodar o projeto, escolha a melhor forma para você vizualizar pelo console
 ![Detail Screen](images/CourseDetailScreen.png)
 
 ### Drawer
-![Drawe](images/Drawer.png)
+![Drawer](images/Drawer.png)
 
