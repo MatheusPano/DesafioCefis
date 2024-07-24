@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'course_detail_screen.dart'; // Importe a tela de detalhes do curso
+import 'about_screen.dart'; // Importe a tela Sobre
+import 'contact_screen.dart'; // Importe a tela Contato
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -44,12 +47,25 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void navigateToCourseDetail(int courseId) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => CourseDetailScreen(courseId: courseId)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 35, 47, 73),
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Color.fromARGB(255, 8, 171, 231), // Cor do ícone do Drawer
+          size: 30, // Tamanho do ícone do Drawer
+        ),
         centerTitle: false,
+        backgroundColor: Color.fromARGB(255, 29, 39, 59),
         title: Text(
           'Learnance',
           style: TextStyle(
@@ -59,41 +75,93 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 8, 171, 231)),
         ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 29, 39, 59),
+              ),
+              child: Text(
+                'Learnance',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('Sobre'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.contact_page),
+              title: Text('Contato'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ContactScreen()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Image.asset(
-                      'images/text_HOME.png',
-                      width: 450,
-                      height: 250,
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Image.asset(
+                        'images/text_HOME.png',
+                        width: 450,
+                        height: 250,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text('Confira nossos cursos abaixo',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                     ),
                   ),
                   SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text('Confira nossos cursos abaixo',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold)),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text('Categoria Fiscal',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text('Categoria Fiscal',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   coursesFiscal.isEmpty
                       ? Center(child: Text('Nenhum curso encontrado'))
                       : CarouselSlider(
@@ -102,42 +170,43 @@ class _HomeScreenState extends State<HomeScreen> {
                               enlargeCenterPage: true,
                               autoPlay: true),
                           items: coursesFiscal.map((course) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Card(
-                                  child: Stack(
-                                    children: [
-                                      Image.network(course['banner'],
-                                          fit: BoxFit.cover,
-                                          width: double.infinity),
-                                      Positioned(
-                                        bottom: 10,
-                                        left: 10,
-                                        right: 10,
-                                        child: Text(
-                                          course['title'],
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                              backgroundColor: Colors.black54),
-                                        ),
+                            return GestureDetector(
+                              onTap: () => navigateToCourseDetail(course['id']),
+                              child: Card(
+                                child: Stack(
+                                  children: [
+                                    Image.network(course['banner'],
+                                        fit: BoxFit.cover,
+                                        width: double.infinity),
+                                    Positioned(
+                                      bottom: 10,
+                                      left: 10,
+                                      right: 10,
+                                      child: Text(
+                                        course['title'],
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            backgroundColor: Colors.black54),
                                       ),
-                                    ],
-                                  ),
-                                );
-                              },
+                                    ),
+                                  ],
+                                ),
+                              ),
                             );
                           }).toList(),
                         ),
                   SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text('Categoria Contábil',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold)),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text('Categoria Contábil',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                   SizedBox(height: 10),
                   coursesContabil.isEmpty
@@ -148,30 +217,29 @@ class _HomeScreenState extends State<HomeScreen> {
                               enlargeCenterPage: true,
                               autoPlay: true),
                           items: coursesContabil.map((course) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Card(
-                                  child: Stack(
-                                    children: [
-                                      Image.network(course['banner'],
-                                          fit: BoxFit.cover,
-                                          width: double.infinity),
-                                      Positioned(
-                                        bottom: 10,
-                                        left: 10,
-                                        right: 10,
-                                        child: Text(
-                                          course['title'],
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                              backgroundColor: Colors.black54),
-                                        ),
+                            return GestureDetector(
+                              onTap: () => navigateToCourseDetail(course['id']),
+                              child: Card(
+                                child: Stack(
+                                  children: [
+                                    Image.network(course['banner'],
+                                        fit: BoxFit.cover,
+                                        width: double.infinity),
+                                    Positioned(
+                                      bottom: 10,
+                                      left: 10,
+                                      right: 10,
+                                      child: Text(
+                                        course['title'],
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            backgroundColor: Colors.black54),
                                       ),
-                                    ],
-                                  ),
-                                );
-                              },
+                                    ),
+                                  ],
+                                ),
+                              ),
                             );
                           }).toList(),
                         ),
