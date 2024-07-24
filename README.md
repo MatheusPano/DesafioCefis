@@ -1,16 +1,43 @@
-# cefis
+# Layout Mobile
 
-A new Flutter project.
+## 📝 Sobre o projeto
+Este projeto se trata da realização de um desafio proposto pela empresa CEFIS, como parte de um processo seletivo. Ele consiste na criação de um aplicativo baseado em uma LXP (Learning Experience
+Platform).
 
-## Getting Started
+## ✍️ Descrição do desafio
+O seu usuário estará interessado em adquirir conhecimento através de cursos
+online. Para ajudá-lo, o aplicativo deverá disponibilizar duas ações: visualizar os
+cursos disponíveis em categorias e ver os detalhes de um curso.
 
-This project is a starting point for a Flutter application.
+## ⚛️ Tecnologias utilizadas
+- Dart
+- Flutter
 
-A few resources to get you started if this is your first Flutter project:
+## 💽 Como rodar o projeto
+Para iniciar o projeto localmente realize um clone do repositório:
+```
+git clone https://github.com/MatheusPano/DesafioCefis.git
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Para iniciar o projeto:
+```
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Após rodar o projeto, escolha a melhor forma para você vizualizar pelo console e pronto:
+
+
+## 💻 Preview do projeto
+
+### Splash Screen
+![Splash Screen](images/SplashScreen.png)
+
+### Home Screen
+![Home Screen](images/HomeScreen.png)
+
+### Detail Screen
+![Detail Screen](images/CourseDetailScreen.png)
+
+### Drawer
+![Drawe](images/Drawer.png)
+
