@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              SizedBox(height: 120),
               Image.asset('images/logo.png', width: 400, height: 350),
               SizedBox(height: 200),
               Text(
